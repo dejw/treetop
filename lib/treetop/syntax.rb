@@ -12,7 +12,7 @@ module Treetop
 	#
 	# Example:
 	#		include Treetop::Syntax
-	# 	tt = grammar :Simple do
+	# 	grammar :Simple do
 	#			rule :foo do
 	#				["foo", :bar]
 	# 		end
@@ -21,11 +21,10 @@ module Treetop
 	#				"bar" / "baz"
 	#			end
 	# 	end
-	#		File.open("simple.tt", "w") do |file| file.write(tt) end
+	#		parser = SimpleParser.new
 	#
-	#	Automatic parsing is not implemented yet. Additional features like
-	# special operators (* + ?), bractets and syntax node declarations
-	# will be implemented in the future.
+	#	Additional features like special operators (* + ?), bractets and
+	# syntax node declarations will be implemented in the future.
 	module Syntax
 		class Grammar
 			attr_reader :source
