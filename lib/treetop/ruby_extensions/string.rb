@@ -8,7 +8,7 @@ class String
       index + 1
     end
   end
-  
+
   def line_of(index)
     self[0...index].count("\n") + 1
   end
@@ -39,4 +39,8 @@ class String
   def treetop_camelize
     to_s.gsub(/\/(.?)/){ "::" + $1.upcase }.gsub(/(^|_)(.)/){ $2.upcase }
   end
+
+	def to_tt
+		"'#{self}'"
+	end
 end
