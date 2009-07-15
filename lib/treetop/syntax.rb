@@ -10,21 +10,6 @@ module Treetop
 	#
 	# (Note: it is better not to use numbers; use Strings instead)
 	#
-	# Example:
-	#		include Treetop::Syntax
-	# 	grammar :Simple do
-	#			rule :foo do
-	#				["foo", :bar]
-	# 		end
-	#
-	#			rule :bar do
-	#				"bar" / "baz"
-	#			end
-	# 	end
-	#		parser = SimpleParser.new
-	#
-	#	Additional features like special operators (* + ?), bractets and
-	# syntax node declarations will be implemented in the future.
 	module Syntax
 		class Grammar
 			attr_reader :source
