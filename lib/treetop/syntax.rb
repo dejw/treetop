@@ -48,7 +48,7 @@ module Treetop
 			g.source.each_line do |line|
 				source << "  #{line}"
 			end
-			source + "end\n"
+			Treetop.load_from_string(source + "end\n")
 		end
 	end
 end
