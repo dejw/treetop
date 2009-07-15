@@ -34,11 +34,15 @@ module Treetop
 
 			def rule(name)
 				@source += "rule #{name.to_s}\n"
-				yield._to_tt.each_line do |line|
+				yield.to_tt.each_line do |line|
 					@source << "  #{line}"
 				end
 				@source += "\nend\n"
 			end
+		end
+
+		def grammar(name, &block)
+			Syntax.grammar(name, &block)
 		end
 
 		def self.grammar(name, &block)
@@ -51,3 +55,4 @@ module Treetop
 		end
 	end
 end
+
