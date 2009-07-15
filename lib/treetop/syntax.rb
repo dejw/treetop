@@ -34,7 +34,7 @@ module Treetop
 
 			def rule(name)
 				@source += "rule #{name.to_s}\n"
-				yield.to_tt.each_line do |line|
+				yield.seq_to_tt.each_line do |line|
 					@source << "  #{line}"
 				end
 				@source += "\nend\n"
@@ -55,4 +55,3 @@ module Treetop
 		end
 	end
 end
-

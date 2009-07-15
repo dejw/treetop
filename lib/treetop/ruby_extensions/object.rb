@@ -13,7 +13,9 @@ class Object
 		if sequence.length == 0
 			self.to_tt
 		else
-			"(" + self.to_tt + separator + sequence.join_with({:name => :seq_to_tt, :args => [true]}, separator) + ")"
+			output = self.to_tt + separator + sequence.join_with({:name => :seq_to_tt, :args => [true]}, separator)
+			output = "( #{output} )" if inline
+			output
 		end
 	end
 end
