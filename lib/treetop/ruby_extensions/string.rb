@@ -36,6 +36,28 @@ class String
     end
   end
 
+	def indent_paragraph(n)
+		out = ""
+		self.each_line {|line| out += line.indent(n) }
+		out
+	end
+
+	# Removes indentation uniformly.
+	def justify
+		min = self.length
+		self.each_line {|line|
+			next if line.strip == ""
+			if line =~ /^(  *)\S/
+				min = $1.length if min > $1.length
+			else
+				min = 0
+			end
+		}
+		out = ""
+		self.each_line {|line| out += line.slice(min...line.length) || "\n" }
+		out.strip
+	end
+
   def treetop_camelize
     to_s.gsub(/\/(.?)/){ "::" + $1.upcase }.gsub(/(^|_)(.)/){ $2.upcase }
   end

@@ -17,12 +17,36 @@ class Object
 			output = "( #{output} )" if inline
 			output
 		end
+		tt += "*" if @kleene
+		tt += "+" if @one
+		tt += "?" if @optional
 		tt += " <#{@node.to_s}>" if @node
+		tt += " {\n#{@block.gsub("\t", "  ").justify.indent_paragraph(2)}\n}" if @block
 		tt
 	end
 
 	def node(name)
 		@node = name
+		self
+	end
+
+	def block(content)
+		@block = content
+		self
+	end
+
+	def _?
+		@optional = true
+		self
+	end
+
+	def kleene
+		@kleene = true
+		self
+	end
+
+	def plus
+		@one = true
 		self
 	end
 end

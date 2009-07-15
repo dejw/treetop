@@ -18,11 +18,11 @@ module Treetop
 			end
 
 			def rule(name)
-				@source += "rule #{name.to_s}\n"
-				yield.seq_to_tt.each_line do |line|
-					@source << "  #{line}"
-				end
-				@source += "\nend\n"
+				@source += "rule #{name.to_s}\n#{yield.seq_to_tt.indent_paragraph(2)}\nend\n"
+			end
+
+			def include(name)
+				@source += "include #{name.to_s}\n"
 			end
 		end
 
@@ -31,12 +31,10 @@ module Treetop
 		end
 
 		def self.grammar(name, &block)
-			source = "grammar #{name.to_s}\n"
 			(g = Grammar.new).instance_eval(&block)
-			g.source.each_line do |line|
-				source << "  #{line}"
-			end
-			Treetop.load_from_string(source + "end\n")
+			source = "grammar #{name.to_s}\n#{g.source.indent_paragraph(2)}end\n"
+			Treetop.load_from_string(source)
 		end
 	end
 end
+
