@@ -27,6 +27,7 @@ class Object
 
 		tt += " <#{@node.to_s}>" if @node
 		tt += " {\n#{@block.gsub("\t", "  ").justify.indent_paragraph(2)}\n}" if @block
+		tt = @label.to_s + ':' + tt if @label
 		tt
 	end
 
@@ -37,6 +38,11 @@ class Object
 
 	def block(content)
 		@block = content
+		self
+	end
+
+	def label(name)
+		@label = name
 		self
 	end
 

@@ -111,7 +111,13 @@ It is also possible to add inline blocks of code. They are in fact strings stric
       end
     end
 
-Labels and Overriding Element Accessors are not available yet.
+Labels in rule definitions can be written as follow (example taken from documentation):
+
+  rule :labels do
+    [/[a-z]/.label(:first_letter), [', ', /[a-z]/.kleene.label(:letter)].label(:rest_letters)].block(%{
+      ...
+    })
+  end
 
 ###Composition
 
