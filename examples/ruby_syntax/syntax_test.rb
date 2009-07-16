@@ -65,7 +65,7 @@ class SyntaxTest < Test::Unit::TestCase
 		assert_grammar {
 			grammar :Optional do
 				rule :Optional do
-					"foo"._?
+					"foo".mark
 				end
 			end
 		}

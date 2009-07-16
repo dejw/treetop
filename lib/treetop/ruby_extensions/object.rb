@@ -21,7 +21,7 @@ class Object
 		# Operators
 		tt = "&" + tt if @amper
 		tt = "!" + tt if @bang
-		tt += "*" if @klene
+		tt += "*" if @kleene
 		tt += "+" if @plus
 		tt += "?" if @mark
 
