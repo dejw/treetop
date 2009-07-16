@@ -112,3 +112,30 @@ It is also possible to add inline blocks of code. They are in fact strings stric
     end
 
 Labels and Overriding Element Accessors are not available yet.
+
+###Composition
+
+Inclusion of a grammar works thanks to `include` function call inside the grammar definition:
+
+    grammar :One do
+      rule :a do
+        foo"
+      end
+    
+      rule :b do        
+        "baz"
+      end      
+    end
+
+    grammar :Two do
+      include :One
+      rule :a do      
+        :super / "bar" / :c
+      end
+      
+      rule :c do
+       :b      
+      end
+    end
+
+Grammar Two can generate `"foo"`, `"bar"` and `"baz"` words.
