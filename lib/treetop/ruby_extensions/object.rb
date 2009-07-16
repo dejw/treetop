@@ -17,9 +17,14 @@ class Object
 			output = "( #{output} )" if inline
 			output
 		end
-		tt += "*" if @kleene
-		tt += "+" if @one
-		tt += "?" if @optional
+
+		# Operators
+		tt = "&" + tt if @amper
+		tt = "!" + tt if @bang
+		tt += "*" if @klene
+		tt += "+" if @plus
+		tt += "?" if @mark
+
 		tt += " <#{@node.to_s}>" if @node
 		tt += " {\n#{@block.gsub("\t", "  ").justify.indent_paragraph(2)}\n}" if @block
 		tt
@@ -35,18 +40,12 @@ class Object
 		self
 	end
 
-	def _?
-		@optional = true
-		self
-	end
-
-	def kleene
-		@kleene = true
-		self
-	end
-
-	def plus
-		@one = true
-		self
+	[:mark, :kleene, :plus, :amper, :bang].each do |sym|
+		Object.class_eval(%{
+			def #{sym.to_s}
+				@#{sym.to_s} = true
+				self
+			end
+		})
 	end
 end
